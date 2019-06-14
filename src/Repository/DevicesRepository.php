@@ -19,6 +19,15 @@ class DevicesRepository extends ServiceEntityRepository
         parent::__construct($registry, Devices::class);
     }
 
+    public function findAllOrderById()
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.id', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     // /**
     //  * @return Devices[] Returns an array of Devices objects
     //  */

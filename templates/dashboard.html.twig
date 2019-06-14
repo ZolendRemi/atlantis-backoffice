@@ -4,10 +4,56 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-6">
-                <a href="" class="btn btn-primary btn-block">Users List</a>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12"><a href="" class="btn btn-primary btn-block">Users List</a></div>
+                        <div class="col-12">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <td>Id & Name</td>
+                                    <td>Mail Address</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user in users %}
+                                    <tr>
+                                        <td>#{{ user.id }} - <a href="">@{{ user.name }}</a></td>
+                                        <td>{{ user.mail }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <a href="" class="btn btn-light btn-block">And {{ usersNumber - 5}} more users ...</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-6">
-                <a href="" class="btn btn-primary btn-block">Devices List</a>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12"><a href="" class="btn btn-primary btn-block">Devices List</a></div>
+                        <div class="col-12">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <td>Id</td>
+                                    <td>Mail Address</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for device in devices %}
+                                    <tr>
+                                        <td>#{{ device.id }}</td>
+                                        <td><a href="">@{{ device.name }}</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <a href="" class="btn btn-light btn-block">And {{ devicesNumber - 5}} more devices ...</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

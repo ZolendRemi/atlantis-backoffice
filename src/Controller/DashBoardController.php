@@ -12,7 +12,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DashBoardController extends AbstractController
 {
-    public function renderingDashboard(){
-        return $this->render('dashboard.html.twig');
+    public function renderingDashboard()
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $users = $entityManager->getRepository('App\Entity\Users');
+        $devices = $entityManager->getRepository('App\Entity\Devices');
+
+        $usersList = $users->findAllOrderById();
+        $allUsers = count($users->findAll());
+        $devicesList = $devices->findAllOrderById();
+        $allDevices = count($devices->findAll());
+
+        return $this->render('dashboard.html.twig', [
+            "users" => $usersList,
+            "usersNumber" => $allUsers,
+            "devices" => $devicesList,
+            "devicesNumber" => $allDevices
+        ]);
     }
 }
