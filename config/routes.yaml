@@ -1,0 +1,7 @@
+login:
+    path: /
+    controller: App\Controller\ConnexionController::renderingConnexionPage
+
+dashboard:
+    path: /dashboard
+    controller: App\Controller\DashBoardController::renderingDashboard
