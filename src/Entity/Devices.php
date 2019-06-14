@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\DevicesRepository")
  */
-class Users
+class Devices
 {
     /**
      * @ORM\Id()
@@ -22,29 +22,24 @@ class Users
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="App\Entity\Users", inversedBy="devices")
      */
-    private $mail;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Devices", mappedBy="users")
-     */
-    private $devices;
+    private $users;
 
     /**
      * @return mixed
      */
-    public function getDevices()
+    public function getUsers()
     {
-        return $this->devices;
+        return $this->users;
     }
 
     /**
-     * @param mixed $devices
+     * @param mixed $users
      */
-    public function setDevices($devices)
+    public function setUsers($users)
     {
-        $this->devices = $devices;
+        $this->users = $users;
     }
 
     public function getId(): ?int
@@ -60,18 +55,6 @@ class Users
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
 
         return $this;
     }
