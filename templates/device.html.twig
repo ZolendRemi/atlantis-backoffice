@@ -1,0 +1,37 @@
+{% extends 'globalView.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>#{{ device.id }} - @{{ device.name }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h2>List of {{ device.name }}'s user :</h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Name</td>
+                        <td>Unsubscribe</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in device.users %}
+                        <tr>
+                            <td>#{{ user.id }}</td>
+                            <td><a href="">@{{ user.name }}</a></td>
+                            <td><a class="btn btn-block btn-light" href="">Unsubscribe</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6">
+                <h2>Add User</h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}
