@@ -5,3 +5,11 @@ login:
 dashboard:
     path: /dashboard
     controller: App\Controller\DashBoardController::renderingDashboard
+
+usersList:
+    path: /users/list
+    controller: App\Controller\UsersListController::usersListRender
+
+devicesList:
+    path: /devices/list
+    controller: App\Controller\DevicesListController::devicesListRender

@@ -12,5 +12,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UsersListController extends AbstractController
 {
+    public function usersListRender()
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $users = $entityManager->getRepository('App\Entity\Users');
 
+        $usersList = $users->findAll();
+
+        return $this->render('usersList.html.twig', ['users'=>$usersList]);
+    }
 }

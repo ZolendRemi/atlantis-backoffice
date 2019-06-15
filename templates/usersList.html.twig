@@ -1,0 +1,26 @@
+{% extends 'globalView.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>Id & Name</td>
+                        <td>Mail Address</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>#{{ user.id }} - <a href="">@{{ user.name }}</a></td>
+                            <td>{{ user.mail }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

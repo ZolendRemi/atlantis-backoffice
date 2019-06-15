@@ -12,5 +12,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DevicesListController extends AbstractController
 {
+    public function devicesListRender()
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $devices = $entityManager->getRepository('App\Entity\Devices');
 
+        $devicesList = $devices->findAll();
+
+        return $this->render('devicesList.html.twig', ['devices'=>$devicesList]);
+    }
 }
