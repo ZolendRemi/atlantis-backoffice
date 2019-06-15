@@ -13,3 +13,11 @@ usersList:
 devicesList:
     path: /devices/list
     controller: App\Controller\DevicesListController::devicesListRender
+
+userPage:
+    path: /user/{id}
+    controller: App\Controller\UserController::userRender
+
+devicePage:
+    path: /device/{id}
+    controller: App\Controller\DeviceController::deviceRender
