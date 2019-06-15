@@ -27,7 +27,7 @@ class Users
     private $mail;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Devices", mappedBy="users")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Devices", inversedBy="users")
      */
     private $devices;
 
