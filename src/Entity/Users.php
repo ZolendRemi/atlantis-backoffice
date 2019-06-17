@@ -47,6 +47,11 @@ class Users
         $this->devices = $devices;
     }
 
+    public function addDevice(Devices $devices){
+        $this->devices[] = $devices;
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

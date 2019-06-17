@@ -21,3 +21,19 @@ userPage:
 devicePage:
     path: /device/{id}
     controller: App\Controller\DeviceController::deviceRender
+
+addDevice:
+    path: /user/{userId}/device/{deviceId}/add
+    controller: App\Controller\UserController::AddDevice
+
+addUser:
+    path: /device/{deviceId}/user/{userId}/add
+    controller: App\Controller\DeviceController::AddUser
+
+unsubDevice:
+    path: /user/{userId}/device/{deviceId}/unsub
+    controller: App\Controller\UserController::UnsubDevice
+
+unsubUser:
+    path: /device/{deviceId}/user/{userId}/unsub
+    controller: App\Controller\DeviceController::UnsubUser
