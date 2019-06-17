@@ -23,7 +23,7 @@
                     {% for device in user.devices %}
                         <tr>
                             <td>#{{ device.id }}</td>
-                            <td><a href="">@{{ device.name }}</a></td>
+                            <td><a href="{{ path('devicePage',{'id':device.id}) }}">@{{ device.name }}</a></td>
                             <td><a class="btn btn-block btn-danger btn-sm" href="{{ path('unsubDevice',{'userId':user.id,'deviceId':device.id}) }}">Unsubscribe</a></td>
                         </tr>
                         {% set arrayId = arrayId|merge([device.id]) %}
@@ -42,12 +42,11 @@
                     </tr>
                     </thead>
                     <tbody>
-
                     {% for device in devices %}
                         {% if device.id not in arrayId %}
                             <tr>
                                 <td>{{ device.id }}</td>
-                                <td><a href="">@{{ device.name }}</a></td>
+                                <td><a href="{{ path('devicePage',{'id':device.id}) }}">@{{ device.name }}</a></td>
                                 <td><a class="btn btn-block btn-info btn-sm" href="{{ path('addDevice',{'userId':user.id,'deviceId':device.id}) }}">Add This Device</a></td>
                             </tr>
                         {% endif %}

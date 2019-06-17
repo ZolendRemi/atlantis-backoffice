@@ -18,9 +18,9 @@ class DeviceController extends AbstractController
         $devices = $entityManager->getRepository('App\Entity\Devices');
         $users = $entityManager->getRepository('App\Entity\Users');
         $device = $devices->find($id);
-        $devicesList = $devices->findAll();
+        $usersList = $users->findAll();
 
-        return $this->render('device.html.twig', ['device' => $device, 'devicesList' => $devicesList]);
+        return $this->render('device.html.twig', ['device' => $device, 'users' => $usersList]);
     }
 
     public function AddUser($deviceId,$userId){
@@ -35,7 +35,7 @@ class DeviceController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        return $this->redirectToRoute('userPage',['id'=>$user->getId()]);
+        return $this->redirectToRoute('devicePage',['id'=>$device->getId()]);
 
     }
 
@@ -44,13 +44,11 @@ class DeviceController extends AbstractController
         $user = $entityManager->getRepository('App\Entity\Users')->find($userId);
         $device = $entityManager->getRepository('App\Entity\Devices')->find($deviceId);
 
-        $user->addDevice($device);
-        $device->addUser($user);
+        $user->getDevices()->removeElement($device);
+        $device->getUsers()->removeElement($user);
 
-        $entityManager->remove($device);
-        $entityManager->remove($user);
         $entityManager->flush();
 
-        return $this->redirectToRoute('userPage',['id'=>$user->getId()]);
+        return $this->redirectToRoute('devicePage',['id'=>$device->getId()]);
     }
 }

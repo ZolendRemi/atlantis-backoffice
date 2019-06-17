@@ -18,13 +18,13 @@
                                 <tbody>
                                 {% for user in users %}
                                     <tr>
-                                        <td>#{{ user.id }} - <a href="">@{{ user.name }}</a></td>
+                                        <td>#{{ user.id }} - <a href="{{ path('userPage',{'id':user.id}) }}">@{{ user.name }}</a></td>
                                         <td>{{ user.mail }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
                             </table>
-                            <a href="" class="btn btn-light btn-block">And {{ usersNumber - 5}} more users ...</a>
+                            <a href="" class="btn btn-light btn-block">And {{ usersNumber - 5 }} more users ...</a>
                         </div>
                     </div>
                 </div>
@@ -45,12 +45,12 @@
                                 {% for device in devices %}
                                     <tr>
                                         <td>#{{ device.id }}</td>
-                                        <td><a href="">@{{ device.name }}</a></td>
+                                        <td><a href="{{ path('devicePage',{'id':device.id}) }}">@{{ device.name }}</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
                             </table>
-                            <a href="" class="btn btn-light btn-block">And {{ devicesNumber - 5}} more devices ...</a>
+                            <a href="" class="btn btn-light btn-block">And {{ devicesNumber - 5 }} more devices ...</a>
                         </div>
                     </div>
                 </div>

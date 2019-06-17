@@ -19,18 +19,40 @@
                     </tr>
                     </thead>
                     <tbody>
+                    {% set arrayId = [] %}
                     {% for user in device.users %}
                         <tr>
                             <td>#{{ user.id }}</td>
-                            <td><a href="">@{{ user.name }}</a></td>
-                            <td><a class="btn btn-block btn-light" href="">Unsubscribe</a></td>
+                            <td><a href="{{ path('userPage',{'id':user.id}) }}">@{{ user.name }}</a></td>
+                            <td><a class="btn btn-block btn-danger btn-sm" href="{{ path('unsubUser',{'deviceId':device.id,'userId':user.id}) }}">Unsubscribe</a></td>
                         </tr>
+                        {% set arrayId = arrayId|merge([user.id]) %}
                     {% endfor %}
                     </tbody>
                 </table>
             </div>
             <div class="col-6">
                 <h2>Add User</h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Name</td>
+                        <td>Add</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        {% if user.id not in arrayId %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td><a href="{{ path('userPage',{'id':user.id}) }}">@{{ user.name }}</a></td>
+                                <td><a class="btn btn-block btn-info btn-sm" href="{{ path('addUser',{'deviceId':device.id,'userId':user.id}) }}">Add This User</a></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
