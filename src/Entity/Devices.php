@@ -19,12 +19,17 @@ class Devices
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $uid;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Users", inversedBy="devices")
      */
     private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Sensor", mappedBy="devices")
+     */
+    private $sensor;
 
     /**
      * @return mixed
@@ -52,14 +57,31 @@ class Devices
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getUid(): ?string
     {
-        return $this->name;
+        return $this->uid;
     }
 
-    public function setName(string $name): self
+    public function setUid(string $uid): self
     {
-        $this->name = $name;
+        $this->uid = $uid;
+
+        return $this;
+    }
+
+    public function getSensor(): ?Sensor
+    {
+        return $this->sensor;
+    }
+
+    public function setSensor(Sensor $sensor): self
+    {
+        $this->sensor = $sensor;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $sensor->getIdDevice()) {
+            $sensor->setIdDevice($this);
+        }
 
         return $this;
     }
