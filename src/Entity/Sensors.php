@@ -55,10 +55,16 @@ class Sensors
      */
     private $stats;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Datas", mappedBy="sensor")
+     */
+    private $datas;
+
 
     public function __construct()
     {
         $this->stats = new ArrayCollection();
+        $this->datas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -141,6 +147,37 @@ class Sensors
     public function setStatType(?StatType $statType): self
     {
         $this->statType = $statType;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Datas[]
+     */
+    public function getDatas(): Collection
+    {
+        return $this->datas;
+    }
+
+    public function addData(Datas $data): self
+    {
+        if (!$this->datas->contains($data)) {
+            $this->datas[] = $data;
+            $data->setSensor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeData(Datas $data): self
+    {
+        if ($this->datas->contains($data)) {
+            $this->datas->removeElement($data);
+            // set the owning side to null (unless already changed)
+            if ($data->getSensor() === $this) {
+                $data->setSensor(null);
+            }
+        }
 
         return $this;
     }
