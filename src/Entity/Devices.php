@@ -22,35 +22,30 @@ class Devices
     private $uid;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Users", inversedBy="devices")
+     * @ORM\Column(type="string", length=255)
      */
-    private $users;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Sensor", mappedBy="devices")
-     */
-    private $sensor;
+    private $name;
 
     /**
      * @return mixed
      */
-    public function getUsers()
+    public function getName()
     {
-        return $this->users;
+        return $this->name;
     }
 
     /**
-     * @param mixed $users
+     * @param mixed $name
      */
-    public function setUsers($users)
+    public function setName($name)
     {
-        $this->users = $users;
+        $this->name = $name;
     }
 
-    public function addUser(Users $users){
-        $this->users[] = $users;
-        return $this;
-    }
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Sensors", mappedBy="devices")
+     */
+    private $sensor;
 
     public function getId(): ?int
     {
@@ -69,12 +64,12 @@ class Devices
         return $this;
     }
 
-    public function getSensor(): ?Sensor
+    public function getSensor(): ?Sensors
     {
         return $this->sensor;
     }
 
-    public function setSensor(Sensor $sensor): self
+    public function setSensor(Sensors $sensor): self
     {
         $this->sensor = $sensor;
 

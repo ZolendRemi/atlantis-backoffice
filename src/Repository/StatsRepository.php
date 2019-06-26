@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Sensor;
+use App\Entity\Stats;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Sensor|null find($id, $lockMode = null, $lockVersion = null)
- * @method Sensor|null findOneBy(array $criteria, array $orderBy = null)
- * @method Sensor[]    findAll()
- * @method Sensor[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Stats|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Stats|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Stats[]    findAll()
+ * @method Stats[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SensorRepository extends ServiceEntityRepository
+class StatsRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Sensor::class);
+        parent::__construct($registry, Stats::class);
     }
 
     // /**
-    //  * @return Sensor[] Returns an array of Sensor objects
+    //  * @return Stats[] Returns an array of Stats objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class SensorRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Sensor
+    public function findOneBySomeField($value): ?Stats
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')

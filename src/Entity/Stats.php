@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\SensorRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\StatsRepository")
  */
-class Sensor
+class Stats
 {
     /**
      * @ORM\Id()
@@ -17,10 +17,10 @@ class Sensor
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Devices", inversedBy="sensor", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sensors", inversedBy="stats")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $device;
+    private $sensor;
 
     /**
      * @ORM\Column(type="datetime")
@@ -33,28 +33,23 @@ class Sensor
     private $value;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\StatType", inversedBy="sensor")
      */
-    private $type;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $uid;
+    private $statType;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdDevice(): ?Devices
+    public function getSensor(): ?Sensors
     {
-        return $this->idDevice;
+        return $this->sensor;
     }
 
-    public function setIdDevice(Devices $idDevice): self
+    public function setSensor(?Sensors $sensor): self
     {
-        $this->idDevice = $idDevice;
+        $this->sensor = $sensor;
 
         return $this;
     }
@@ -83,26 +78,14 @@ class Sensor
         return $this;
     }
 
-    public function getType(): ?string
+    public function getStatType(): ?StatType
     {
-        return $this->type;
+        return $this->statType;
     }
 
-    public function setType(string $type): self
+    public function setStatType(?StatType $statType): self
     {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getUid(): ?string
-    {
-        return $this->uid;
-    }
-
-    public function setUid(string $uid): self
-    {
-        $this->uid = $uid;
+        $this->statType = $statType;
 
         return $this;
     }
