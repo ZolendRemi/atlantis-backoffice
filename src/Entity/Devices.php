@@ -27,6 +27,27 @@ class Devices
     private $name;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Users", inversedBy="devices")
+     */
+    private $users;
+
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param mixed $users
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+    }
+
+    /**
      * @return mixed
      */
     public function getName()
