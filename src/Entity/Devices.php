@@ -63,6 +63,11 @@ class Devices
         $this->name = $name;
     }
 
+    public function addUser(Users $users){
+        $this->users[] = $users;
+        return $this;
+    }
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Sensors", mappedBy="devices")
      */

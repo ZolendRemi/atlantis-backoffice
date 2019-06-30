@@ -32,6 +32,11 @@ class Datas
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isBool;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Datas
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getIsBool(): ?bool
+    {
+        return $this->isBool;
+    }
+
+    public function setIsBool(bool $isBool): self
+    {
+        $this->isBool = $isBool;
 
         return $this;
     }
